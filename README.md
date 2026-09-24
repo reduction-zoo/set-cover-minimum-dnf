@@ -1,6 +1,6 @@
 # Set Cover → Minimum DNF with a term bound
 
-**Status:** `ready_for_expert_review` · **Research model:** Codex GPT-6 (variant not recorded in the research session) · **Submitted:** 2026-09-24
+**Status:** `ready_for_expert_review` · **Research model:** Codex `gpt-6-sol` · **Submitted:** 2026-09-24
 
 This archive gives deterministic polynomial-time maps from Set Cover to exact DNF minimization with an explicit accepted-assignment list and a term bound. Every valid target DNF recovers a source cover, and a valid target `NO-SOLUTION` recovers source infeasibility. The result reconstructs known DNF-hardness ingredients for the fixed search contract; human expert acceptance remains pending.
 
