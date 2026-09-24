@@ -1,7 +1,7 @@
 # Campaign state
 
 Status: preparation complete; construction open.
-Budget: 20 rounds. Used: 0. Remaining: 20.
+Budget: 20 rounds. Used: 1. Remaining: 19.
 Board source: d56f22aee71c281b1a9b7aa90e65a0d2607efdce.
 
 Capability probe (2026-09-23):
@@ -20,8 +20,9 @@ Capability probe (2026-09-23):
 
 Testing foundation: [contract](work/contract.md), [cases](work/cases.json), [oracles and injected driver](work/check.py), [preparation record](work/preparation.md). Self-test: 115 cases, 54 YES, 61 NO, exhaustive source labels agreed with Z3 5.1.0. Target oracle is finite at `n <= 8`.
 
-Current claim: none. Correctness, novelty and significance are unassessed. Main obstacle: an exact explicit truth-table construction with controlled unintended implicants. Prospects within budget: unknown (uncalibrated judgment).
-Next action: search structural experience and start round 001 with a recorded hypothesis and first check.
+Current claim: no complete rule. Correctness, novelty and significance are unassessed. Main obstacle: an exact explicit truth-table construction with controlled unintended implicants. Prospects within budget: unknown (uncalibrated judgment).
+Next action: investigate a bounded-set intermediary and the published parity completion.
 
 | Round | Mechanism / scope | First check | Outcome | Evidence |
 |---|---|---|---|---|
+| 001 | One-hot incidence cube completion | Size of a full-set cube | refuted | [round 001](rounds/001/round.md) |
