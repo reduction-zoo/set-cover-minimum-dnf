@@ -8,7 +8,7 @@ Hypothesis: transform arbitrary Set Cover into a 3-uniform Set Cover instance wi
 
 First discriminating check: build a concrete intermediary, trace its YES/NO correspondence and decoder, and bound its size. A graph vertex-cover encoding is an initial bridge; the decisive question is whether its degree can be bounded without losing the cover budget or recovery. If only an abstract NP-completeness appeal remains, this round is inconclusive for the required executable F/G.
 
-Experience search: no local board entries directory exists. Relevant prior evidence: round 001's exponential closure and the restricted-source construction in Hellerstein et al. §3.
+Experience search: no local board entries directory exists. Relevant prior evidence: round 001's exponential closure and the restricted-source construction in Allender et al. §3.
 
 ## Evidence and diagnosis
 
@@ -20,7 +20,7 @@ The first check is **supported**: any CNF satisfying assignment yields an exact 
 
 An earlier full run was manually interrupted at source case 8 after target-oracle work became slow. It returned `unknown` only because SIGINT interrupted Z3; it was not interpreted as target infeasibility. Case 8 is preserved in the fixed corpus. Diagnosis: the initial validator scanned every accepted assignment for every returned term, and the broad set-cover encoding did not exploit maximal cubes or forced cubes. The definition-equivalent oracle repairs were self-tested and the full run then passed. No candidate expectation was changed.
 
-Primary proof audited locally: [Hellerstein et al., Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), accessed 2026-09-23. These cover the sparse downset and parity phases; the SAT/three-set bridge and implementation-specific decoder are proved in our proof file. Novelty is not claimed. Independent correctness, novelty and significance review remains pending.
+Primary proof audited locally: [Allender et al., Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), accessed 2026-09-23. These cover the sparse downset and parity phases; the SAT/three-set bridge and implementation-specific decoder are proved in our proof file. Novelty is not claimed. The [independent review](../../reviews/initial/review.md) advanced the rule on 2026-09-24 after separate correctness, novelty and significance assessments.
 
 Experience extraction (2026-09-24): [bounded-set parity completion](../../../../research/experience/bounded-set-parity-completion.md), a proposed reusable entry pending promotion to the board's local collection after review.
 

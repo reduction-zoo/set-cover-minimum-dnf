@@ -16,7 +16,7 @@ The first check is conclusive for this particular incidence encoding. Take unive
 
 Outcome: **refuted** for direct one-hot/coordinate-literal completion. This does not rule out bounded-set preprocessing, a different code, or a gadget that changes the target function. The supported cause is explicit closure under a large intended cube, not an oracle failure.
 
-Primary source checked 2026-09-23: [Hellerstein, Kletenik, McCabe, and Servedio, *Minimizing DNF Formulas and AC0 Circuits Given a Truth Table*, §3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf). It explicitly notes that Gimpel's one-hot first phase can have exponential truth tables and obtains a polynomial table after restricting the source to 3-partite set cover. This agrees with the obstruction but does not itself give a direct reduction from arbitrary set cover under our fixed input contract.
+Primary source checked 2026-09-23: [Allender, Hellerstein, McCabe, Pitassi, and Saks, *Minimizing DNF Formulas and AC0 Circuits Given a Truth Table*, §3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf). It explicitly notes that Gimpel's one-hot first phase can have exponential truth tables and obtains a polynomial table after restricting the source to 3-partite set cover. This agrees with the obstruction but does not itself give a direct reduction from arbitrary set cover under our fixed input contract.
 
 Experience extraction: none. This is a standard size obstruction already explicit in the cited primary proof; no new reusable finding beyond this round record.
 

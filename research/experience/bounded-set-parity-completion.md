@@ -8,7 +8,7 @@ If a search problem admits a polynomial, witness-recoverable reduction to a set-
 
 ## Evidence and status
 
-General lemma: [Hellerstein et al., Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), checked 2026-09-23. Local composition and decoder: [round 002 proof](../../campaigns/set-cover-minimum-dnf/work/proof.md), with [finite checks](../../campaigns/set-cover-minimum-dnf/work/verification.md). Independent review pending. The round 001 [counterexample](../../campaigns/set-cover-minimum-dnf/rounds/001/round.md) demonstrates the exponential ceiling for an unbounded intended cube.
+General lemma: [Allender et al., Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), checked 2026-09-23. Local composition and decoder: [round 002 proof](../../campaigns/set-cover-minimum-dnf/work/proof.md), with [finite checks](../../campaigns/set-cover-minimum-dnf/work/verification.md). The [independent review](../../campaigns/set-cover-minimum-dnf/reviews/initial/review.md) advanced this application on 2026-09-24. The round 001 [counterexample](../../campaigns/set-cover-minimum-dnf/rounds/001/round.md) demonstrates the exponential ceiling for an unbounded intended cube.
 
 ## Consequence for search
 

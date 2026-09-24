@@ -1,6 +1,6 @@
 # A polynomial reduction for the fixed search contract
 
-The implementation is [algorithm.py](algorithm.py). The source and target encodings and special outputs are [fixed in contract.md](contract.md). The central partial-function and parity-completion lemmas are the published construction of Hellerstein, Kletenik, McCabe, and Servedio, [*Minimizing DNF Formulas and AC0 Circuits Given a Truth Table*, Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), which attributes the underlying construction to Gimpel. The SAT-to-three-set gadget and the full composition below are specified and proved here. This is a reconstruction of known hardness machinery, not a novelty claim.
+The implementation is [algorithm.py](algorithm.py). The source and target encodings and special outputs are [fixed in contract.md](contract.md). The central partial-function and parity-completion lemmas are the published construction of Allender, Hellerstein, McCabe, Pitassi, and Saks, [*Minimizing DNF Formulas and AC0 Circuits Given a Truth Table*, Lemmas 3.1 and 3.3](https://www.cs.rutgers.edu/~allender/papers/mindnf.pdf), which attributes the underlying construction to Gimpel. The SAT-to-three-set gadget and the full composition below are specified and proved here. This is a reconstruction of known hardness machinery, not a novelty claim.
 
 ## Easy instances
 
