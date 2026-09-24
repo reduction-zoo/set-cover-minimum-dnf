@@ -67,29 +67,39 @@ def target_valid(x, y):
         return False
     if any(not isinstance(t, list) or len(t) != n or any(type(v) is not int or v not in (-1, 0, 1) for v in t) for t in y["terms"]):
         return False
-    actual = {"".join(bits) for bits in itertools.product("01", repeat=n)
-              if any(all(v == 0 or (bit == "1") == (v == 1) for bit, v in zip(bits, term)) for term in y["terms"])}
+    actual = set()
+    for term in y["terms"]:
+        covered = {a for a in accepted if all(v == 0 or (bit == "1") == (v == 1) for bit, v in zip(a, term))}
+        if len(covered) != 1 << term.count(0):
+            return False
+        actual.update(covered)
     return actual == set(accepted)
 
 
 def target_z3(x, limit=3):
     n, accepted, bound = x["n"], set(x["accepted"]), x["K"]
-    if n > 8:
-        raise RuntimeError("target oracle finite domain is n <= 8")
-    assignments = ["".join(bits) for bits in itertools.product("01", repeat=n)]
-    cubes = []
-    covers = []
-    for cube in itertools.product((-1, 0, 1), repeat=n):
-        covered = {a for a in assignments if all(v == 0 or (bit == "1") == (v == 1) for bit, v in zip(a, cube))}
-        if covered and covered <= accepted:
-            cubes.append(cube)
-            covers.append(covered)
+    if any(len(a) != n or set(a) - {"0", "1"} for a in accepted):
+        raise ValueError("invalid target assignment")
+    # Every legal implicant is formed by merging two smaller complete subcubes.
+    covers = {a: {a} for a in accepted}
+    pending = list(accepted)
+    for cube in pending:
+        for pos, bit in enumerate(cube):
+            if bit == "-":
+                continue
+            other = cube[:pos] + ("1" if bit == "0" else "0") + cube[pos + 1:]
+            if other in covers:
+                merged = cube[:pos] + "-" + cube[pos + 1:]
+                if merged not in covers:
+                    covers[merged] = covers[cube] | covers[other]
+                    pending.append(merged)
+    cubes = list(covers)
     variables = [z3.Bool(f"t{i}") for i in range(len(cubes))]
     solver = z3.Solver()
     if variables:
         solver.add(z3.PbLe([(v, 1) for v in variables], bound))
     for a in accepted:
-        solver.add(z3.Or([variables[i] for i, covered in enumerate(covers) if a in covered]))
+        solver.add(z3.Or([variables[i] for i, cube in enumerate(cubes) if a in covers[cube]]))
     outputs = []
     while len(outputs) < limit:
         status = solver.check()
@@ -99,7 +109,7 @@ def target_z3(x, limit=3):
             raise RuntimeError(f"target solver: {status}")
         model = solver.model()
         chosen = [i for i, v in enumerate(variables) if z3.is_true(model.eval(v))]
-        y = {"terms": [list(cubes[i]) for i in chosen]}
+        y = {"terms": [[-1 if bit == "0" else 1 if bit == "1" else 0 for bit in cubes[i]] for i in chosen]}
         assert target_valid(x, y)
         outputs.append(y)
         solver.add(z3.Or([v != model.eval(v) for v in variables]))
@@ -138,6 +148,18 @@ def self_test():
         assert bool(found) == expected
         assert all(target_valid(x, y) for y in found)
         assert target_valid(x, "NO-SOLUTION") == (not expected)
+    assignments = ["00", "01", "10", "11"]
+    for mask in range(16):
+        accepted = {a for i, a in enumerate(assignments) if mask & (1 << i)}
+        legal = []
+        for cube in itertools.product((-1, 0, 1), repeat=2):
+            covered = {a for a in assignments if all(v == 0 or (bit == "1") == (v == 1) for bit, v in zip(a, cube))}
+            if covered <= accepted:
+                legal.append(covered)
+        for bound in range(3):
+            expected = any(set().union(*choice) == accepted for size in range(bound + 1)
+                           for choice in itertools.combinations(legal, size))
+            assert bool(target_z3({"n": 2, "accepted": sorted(accepted), "K": bound}, limit=1)) == expected
     assert not target_valid({"n": 2, "accepted": ["00", "11"], "K": 2}, {"terms": [[-1, -1]]})
     assert not target_valid({"n": 1, "accepted": ["0"], "K": 1}, {"terms": [[0]]})
     print(f"self-test passed: {len(cases)} cases ({yes} YES, {no} NO), Z3 {z3.get_version_string()}")
