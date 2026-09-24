@@ -67,13 +67,23 @@ def target_valid(x, y):
         return False
     if any(not isinstance(t, list) or len(t) != n or any(type(v) is not int or v not in (-1, 0, 1) for v in t) for t in y["terms"]):
         return False
+    accepted_values = {int(a or "0", 2) for a in accepted}
     actual = set()
     for term in y["terms"]:
-        covered = {a for a in accepted if all(v == 0 or (bit == "1") == (v == 1) for bit, v in zip(a, term))}
-        if len(covered) != 1 << term.count(0):
+        if 1 << term.count(0) > len(accepted_values):
             return False
-        actual.update(covered)
-    return actual == set(accepted)
+        base = sum(1 << (n - 1 - i) for i, v in enumerate(term) if v == 1)
+        free = sum(1 << (n - 1 - i) for i, v in enumerate(term) if v == 0)
+        submask = free
+        while True:
+            value = base | submask
+            if value not in accepted_values:
+                return False
+            actual.add(value)
+            if submask == 0:
+                break
+            submask = (submask - 1) & free
+    return actual == accepted_values
 
 
 def target_z3(x, limit=3):
@@ -93,13 +103,36 @@ def target_z3(x, limit=3):
                 if merged not in covers:
                     covers[merged] = covers[cube] | covers[other]
                     pending.append(merged)
-    cubes = list(covers)
-    variables = [z3.Bool(f"t{i}") for i in range(len(cubes))]
+    cubes = [cube for cube in covers if not any(bit != "-" and
+             cube[:pos] + "-" + cube[pos + 1:] in covers for pos, bit in enumerate(cube))]
+    required = set(accepted)
+    forced = set()
+    while True:
+        new = {next(i for i, cube in enumerate(cubes) if a in covers[cube])
+               for a in required if sum(a in covers[cube] for cube in cubes) == 1} - forced
+        if not new:
+            break
+        forced |= new
+        required -= set().union(*(covers[cubes[i]] for i in new))
+    if len(forced) > bound:
+        return []
+    free = [i for i, cube in enumerate(cubes) if i not in forced and covers[cube] & required]
+    allowance = bound - len(forced)
+    largest = max((len(covers[cubes[i]] & required) for i in free), default=0)
+    if required and largest * allowance < len(required):
+        return []
+    tight = bool(required) and largest * allowance == len(required)
+    if tight:
+        free = [i for i in free if len(covers[cubes[i]] & required) == largest]
+    variables = [z3.Bool(f"t{i}") for i in free]
     solver = z3.Solver()
-    if variables:
-        solver.add(z3.PbLe([(v, 1) for v in variables], bound))
-    for a in accepted:
-        solver.add(z3.Or([variables[i] for i, cube in enumerate(cubes) if a in covers[cube]]))
+    if variables and not tight:
+        solver.add(z3.PbLe([(v, 1) for v in variables], allowance))
+    for a in required:
+        options = [variables[j] for j, i in enumerate(free) if a in covers[cubes[i]]]
+        solver.add(z3.PbEq([(v, 1) for v in options], 1) if tight and options else z3.Or(options))
+    if n > 20:
+        print(f"oracle n={n} A={len(accepted)} cubes={len(cubes)} forced={len(forced)} remaining={len(required)} free={len(free)} tight={tight}", file=sys.stderr, flush=True)
     outputs = []
     while len(outputs) < limit:
         status = solver.check()
@@ -108,7 +141,7 @@ def target_z3(x, limit=3):
         if status != z3.sat:
             raise RuntimeError(f"target solver: {status}")
         model = solver.model()
-        chosen = [i for i, v in enumerate(variables) if z3.is_true(model.eval(v))]
+        chosen = list(forced) + [free[j] for j, v in enumerate(variables) if z3.is_true(model.eval(v))]
         y = {"terms": [[-1 if bit == "0" else 1 if bit == "1" else 0 for bit in cubes[i]] for i in chosen]}
         assert target_valid(x, y)
         outputs.append(y)
@@ -172,6 +205,7 @@ def candidate(path):
         x = case["source"]
         raw = subprocess.run([sys.executable, path], input=json.dumps(x), text=True, capture_output=True, check=True)
         target = json.loads(raw.stdout)
+        print(f"case {index}: n={target['n']} A={len(target['accepted'])} K={target['K']}", file=sys.stderr, flush=True)
         ys = target_z3(target)
         if not ys:
             ys = ["NO-SOLUTION"]

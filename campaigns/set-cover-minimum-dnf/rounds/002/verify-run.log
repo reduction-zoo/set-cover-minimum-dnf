@@ -1,0 +1,7 @@
+Uninstalled 1 package in 1ms
+Installed 1 package in 1ms
+case 0: n=0 A=1, decision=YES, outputs=1
+case 1: n=1 A=1, decision=NO, outputs=1
+case 2: n=548 A=4244, decision=YES, outputs=2
+case 3: n=536 A=4112, decision=NO, outputs=1
+independent verification passed: 4 source cases, 5 target outputs; Kissat 4.0.4
