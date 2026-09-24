@@ -26,4 +26,4 @@ Experience extraction (2026-09-24): [bounded-set parity completion](../../../../
 
 ## Next action
 
-Hold the candidate fixed for registered independent review. If it advances, write and inspect the Typst manuscript.
+The independent review advanced the fixed candidate. The [Typst manuscript](../../work/manuscript.pdf) was compiled and inspected page by page; its [inspection record](../../work/evidence/paper-inspection/inspection.md) closes the writing stage. The next action is human expert review. The campaign stops as ready for expert review after two of 20 rounds.

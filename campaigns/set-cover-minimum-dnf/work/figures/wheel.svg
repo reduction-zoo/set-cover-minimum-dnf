@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<rect width="900" height="360" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#111} .label{font-size:20px} .small{font-size:17px}</style>
+<text x="28" y="39" class="label" font-weight="bold">triple</text>
+<text x="350" y="39" class="label" font-weight="bold">points</text>
+<text x="180" y="82" class="label" text-anchor="middle">a₁</text>
+<text x="250" y="82" class="label" text-anchor="middle">a₂</text>
+<text x="320" y="82" class="label" text-anchor="middle">b₁</text>
+<text x="390" y="82" class="label" text-anchor="middle">b₂</text>
+<text x="460" y="82" class="label" text-anchor="middle">T₁</text>
+<text x="530" y="82" class="label" text-anchor="middle">T₂</text>
+<text x="600" y="82" class="label" text-anchor="middle">F₁</text>
+<text x="670" y="82" class="label" text-anchor="middle">F₂</text>
+<text x="740" y="82" class="label" text-anchor="middle">cA</text>
+<text x="810" y="82" class="label" text-anchor="middle">cB</text>
+<rect x="20" y="93" width="850" height="45" fill="#eeeeee"/>
+<text x="43" y="122" class="label">H₁</text>
+<circle cx="180" cy="116" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="250" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="320" cy="116" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="390" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="460" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="530" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="600" cy="116" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="670" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="740" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="810" cy="116" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<rect x="20" y="141" width="850" height="45" fill="#eeeeee"/>
+<text x="43" y="170" class="label">H₂</text>
+<circle cx="180" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="250" cy="164" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="320" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="390" cy="164" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="460" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="530" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="600" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="670" cy="164" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="740" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="810" cy="164" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<text x="43" y="218" class="label">L₁</text>
+<circle cx="180" cy="212" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="250" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="320" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="390" cy="212" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="460" cy="212" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="530" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="600" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="670" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="740" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="810" cy="212" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<text x="43" y="266" class="label">L₂</text>
+<circle cx="180" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="250" cy="260" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="320" cy="260" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="390" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="460" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="530" cy="260" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="600" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="670" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="740" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="810" cy="260" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<line x1="20" y1="283" x2="870" y2="283" stroke="#333" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="43" y="314" class="label">C₁</text>
+<circle cx="180" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="250" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="320" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="390" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="460" cy="308" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="530" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="600" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="670" cy="308" r="7" fill="white" stroke="#111" stroke-width="1.5"/>
+<circle cx="740" cy="308" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<circle cx="810" cy="308" r="7" fill="#111" stroke="#111" stroke-width="1.5"/>
+<text x="35" y="350" class="small">H: true wheel   L: false wheel   C: positive clause literal at occurrence 1</text>
+</svg>
